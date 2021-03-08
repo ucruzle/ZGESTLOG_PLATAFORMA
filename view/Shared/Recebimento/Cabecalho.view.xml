@@ -1,0 +1,75 @@
+<mvc:View controllerName="sap.gestlog.plataforma.controller.Shared.Recebimento" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" class="sapUiSizeCompact">
+	
+	<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+		singleContainerFullSize="false" title="Recepção">
+		
+		<f:content>
+			
+			<!-- 1º coluna - Início -->
+			
+			<core:Title text="" level="H6"/>
+			<Label text="Ord. / Cen." required="false" tooltip="Ordem de Carregamento e Centro" />
+			<Input id="idCarregamento" type="Text" value="{ path: 'Ordem>/idCarregamento' }" enabled="false" tooltip="Ordem de Carregamento" />
+			<Input id="idCentro" type="Text" value="{ path: 'Ordem>/idCentro' }" enabled="false" tooltip="Centro" />
+			
+			<Label text="Transporte" required="true"/>
+			<ComboBox showSecondaryValues="true" items="{ path: 'ListasAuxiliares>/Z_LISTA_TRANSPORTESet' }" selectedKey="{ path: 'Ordem>/transporte' }"
+				change="handleTransporteChange">
+				<core:ListItem key="{ListasAuxiliares>Auart}" text="{ListasAuxiliares>Auart} - {ListasAuxiliares>Txt}"/>
+			</ComboBox>
+			
+			<Label text="Cliente" required="true"/>
+			<Input id="idCliente" type="Text" value="{ path: 'Ordem>/idCliente' }" showValueHelp="true" valueHelpRequest="handleValueHelpCliente" change="" valueState="" tooltip="Código do Cliente" />
+			
+			<!-- 1º coluna - Fim -->
+			
+			<!--2º coluna - Início -->
+			
+			<core:Title text="" level="H6"/>
+			<Label text="Chegada" required="false" />
+			<DatePicker id="idDataChegada" displayFormat="short" value="{ path: '/dataChegada', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Data Chegada" change="" />
+			<TimePicker id="idHoraChegada" dateValue="{Ordem>/horaChegada}" tooltip="Hora Chegada" change="" />
+			
+			<Label text="Operação" required="true" />
+			<ComboBox showSecondaryValues="true" items="{ path: 'ListasAuxiliares>/Z_LISTA_TIPOS_OPERACAOSet' }" selectedKey="{ path: 'Ordem>/tipoOperacao' }"
+				change="handleTipoOperacaoChange">
+				<core:ListItem key="{ListasAuxiliares>Auart}" text="{ListasAuxiliares>Auart} - {ListasAuxiliares>Txt}"/>
+			</ComboBox>
+			
+			<Label text="Município" required="false"/>
+			<Input id="descMunicipio" type="Text" value="{ path: 'Ordem>/descMunicipio' }" showValueHelp="false" enabled="false" valueHelpRequest="handleValueHelpMunicipio" change="" valueState="" tooltip="Município" />
+			
+			<!--2º coluna - Fim -->
+			
+			<!--3º coluna - Início -->
+			
+			<core:Title text="" level="H6"/>
+			<Label text="" required="false"/>
+			<Label text="Usu. / Cart." required="false" tooltip="Usuário criador da ordem e Cartão de Viagem" />
+			<Input id="idUsuario" type="Text" value="{ path: 'Ordem>/idUsuario' }" showValueHelp="false" enabled="false" 
+				valueHelpRequest="handleValueHelpUsuario" change="" valueState="" tooltip="Usuário da criador da ordem" />
+			<Input id="idCartao" type="Text" value="{ path: 'Ordem>/idCartao' }" showValueHelp="false" enabled="false" valueHelpRequest="handleValueHelpCartao" 
+				change="" valueState="" tooltip="Cartão de viagem" />
+
+			<Label text="Prod. / Emb." required="true" tooltip="Tipo de Produto e Tipode de Embalagem" />
+			<ComboBox showSecondaryValues="true" items="{ path: 'ListasAuxiliares>/Z_LISTA_PRODUTOSSet' }" selectedKey="{ path: 'Ordem>/produtos' }"
+				change="handleProdutoChange" tooltip="Tipo de Produto">
+				<core:ListItem key="{ListasAuxiliares>Auart}" text="{ListasAuxiliares>Auart} - {ListasAuxiliares>Txt}"/>
+			</ComboBox>
+			<ComboBox showSecondaryValues="true" items="{ path: 'ListasAuxiliares>/Z_LISTA_EMBALAGENSSet' }" selectedKey="{ path: 'Ordem>/embalagens' }"
+				change="handleEmbalagemChange" tooltip="Tipo de Embalagem">
+				<core:ListItem key="{ListasAuxiliares>Auart}" text="{ListasAuxiliares>Auart} - {ListasAuxiliares>Txt}"/>
+			</ComboBox>
+
+			<Label text="Anterior" required="true"/>
+			<Input id="CargaAnteriorDescricao" value="{ path: 'Ordem>/CargaAnteriorDescricao' }" tooltip="Carga Anterior" />
+			
+			<!--3º coluna - Fim -->
+			
+		</f:content>
+		
+	</f:SimpleForm>
+	
+</mvc:View>

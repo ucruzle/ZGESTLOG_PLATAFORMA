@@ -1,0 +1,40 @@
+<mvc:View controllerName="sap.gestlog.plataforma.controller.Shared.Recebimento" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" class="sapUiSizeCompact">
+	
+	<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+		singleContainerFullSize="false" title="Transporte">
+		
+		<f:content>
+			
+			<!-- 1º coluna - Início -->
+			
+			<core:Title text="" level="H6"/>
+			<Label text="Nº Trans." required="true" />
+			<Input id="idTransportadora" type="Text" value="{ path: 'Ordem>/idTransportadora' }" showValueHelp="true" 
+				valueHelpRequest="handleValueHelpidTransportadora" change="" valueState="" tooltip="Nº da Transportadora" />
+			<Input id="descTransportadora" value="{ path: 'Ordem>/descTransportadora' }" enabled="false" tooltip="{ path: 'Ordem>/descTransportadora' }" />
+
+			<!-- 1º coluna - Fim -->
+
+            <!--2º coluna - Início -->
+			
+			<core:Title text="" level="H6"/>
+			<Label text="Município" required="false"/>
+            <Input id="descMunicipioTrasnportadora" type="Text" value="{ path: 'Ordem>/descMunicipioTrasnportadora' }" enabled="false" tooltip="Município da Transportadora" />
+			
+			<!--2º coluna - Fim -->
+
+            <!--3º coluna - Início -->
+			
+			<core:Title text="" level="H6"/>
+			<Label text="Quantidade" required="true"/>
+			<Input id="quantidadeTransportada" type="Number" value="{ path: 'Ordem>/quantidadeTransportada' }" tooltip="Quantidade Transportada em KG / LT" />
+			
+			<!--3º coluna - Fim -->
+			
+		</f:content>
+		
+	</f:SimpleForm>
+	
+</mvc:View>

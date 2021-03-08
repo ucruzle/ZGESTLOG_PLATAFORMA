@@ -1,0 +1,60 @@
+<mvc:View controllerName="sap.gestlog.plataforma.controller.Cockpit" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" class="sapUiSizeCompact">
+	
+	<Page title="GestLog - Cockpit" showHeader="true" showNavButton="false">
+		<content>
+	
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Recebimento de Carregamento" subheader="Recepção"
+				press="onRecebimentoDeCarregamento">
+				<TileContent
+					footer="Cadastrar e atualizar, informações para liberação de carregamento por controle de triagem, análise de labortório e captura de pesagem.">
+					<ImageContent src="sap-icon://create-form"/>
+				</TileContent>
+			</GenericTile>
+			
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Carregamentos Pendentes" subheader="Fila"
+				press="onChecklistCarregamento">
+				<TileContent footer="Inspeção por checklist, confirmação de inspeção (Aprovação ou Reprovação) e liberação para faturamento e expedição">
+					<ImageContent src="sap-icon://share"/>
+				</TileContent>
+			</GenericTile>
+			
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Faturamento / Expedição" subheader="Fatura" 
+				press="onFaturamentoExpedicao">
+				<TileContent
+					footer="Captura de pesos (bruto e líquido), rastreabilidade pela entrada de lacres e lote de controle, geração de DANFE e cáculo de frete">
+					<ImageContent src="sap-icon://shipping-status"/>
+				</TileContent>
+			</GenericTile>
+			
+			<!--<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Operações FIDC" subheader="FIDC" press="onFidc">-->
+			<!--	<TileContent footer="Operações FIDC">-->
+			<!--		<ImageContent src="sap-icon://waiver"/>-->
+			<!--	</TileContent>-->
+			<!--</GenericTile>-->
+			
+			<!--<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Boleto" subheader="Impressão" press="onBoleto">-->
+			<!--	<TileContent footer="Impressão de boleto inteligente, ou integração SAP">-->
+			<!--		<ImageContent src="sap-icon://bar-code"/>-->
+			<!--	</TileContent>-->
+			<!--</GenericTile>-->
+	
+		</content>
+		<footer>
+			<Toolbar>
+				<!--<Button id="buttonImprimir" text="Imprimir" press="onPrint">-->
+				<!--	<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>-->
+				<!--</Button>-->
+				<!--<ToolbarSpacer/>-->
+				<!--<Button type="Emphasized" text="Salvar" press="onSave">-->
+				<!--	<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>-->
+				<!--</Button>-->
+				<!--<Button text="Cancelar">-->
+				<!--	<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>-->
+				<!--</Button>-->
+			</Toolbar>
+		</footer>
+		
+	</Page>
+	
+</mvc:View>
