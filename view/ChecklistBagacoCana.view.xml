@@ -1,0 +1,24 @@
+<mvc:View controllerName="sap.gestlog.plataforma.controller.ChecklistBagacoCana" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Page title="ZGestLog - Checklist de Carregamento de Bagaço" showHeader="true" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+			<!--<FlexBox justifyContent="End" class="sapUiLargeMarginEnd">-->
+			<!--	<Button text="Salvar operação" press="onSaveOperacao" type="Emphasized"/>-->
+			<!--</FlexBox>-->
+			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.ChecklistCarregamento.CabecalhoCarregamentosPendentes"/> -->
+			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.Transporte"/> -->
+			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.RecebimentoCarregamento"/> -->
+			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.Motorista"/> -->
+			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.ChecklistCarregamento.ListaCarregamentosPendentes"/> -->
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button type="Emphasized" id="btnGravarChecklistBagaco" icon="sap-icon://save" text="Gravar" 
+					press="onGravarChecklistBagaco" tooltip="Gravar dados Checklist de Carregamento de Bagaço">
+					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
+				</Button>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

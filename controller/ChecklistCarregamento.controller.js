@@ -1,197 +1,237 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/Filter",
-	"../../utils",
+	"../utils",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/routing/History",
 	"sap/ui/core/UIComponent"
-], function(Controller, Filter, utils, JSONModel, History, UIComponent) {
+], function (Controller, Filter, utils, JSONModel, History, UIComponent) {
 	"use strict";
 
-	return Controller.extend("sap.gestlog.plataforma.controller.Shared.Recebimento", {
+	return Controller.extend("sap.gestlog.plataforma.controller.ChecklistCarregamento", {
 
-		// onInit: function () {
-		// 	this._mode = "";
-		// 	this._activeScreen = "view";
-		// },
+		onInit: function () {
+			this._mode = "";
+			this._activeScreen = "view";
+		},
 
-		// onNavBack: function () {
+		onNavBack: function () {
 
-		// 	var oHistory = History.getInstance();
-		// 	var sPreviousHash = oHistory.getPreviousHash();
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
 
-		// 	if (sPreviousHash !== undefined) {
-		// 		window.history.go(-1);
-		// 	} else {
-		// 		var oRouter = UIComponent.getRouterFor(this);
-		// 		oRouter.navTo("cockpit", {}, true);
-		// 	}
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = UIComponent.getRouterFor(this);
+				oRouter.navTo("cockpit", {}, true);
+			}
 
-		// },
+		},
+
+		onEditChecklistPendente: function(oEvent) {
+			utils.navegaEtapaCarregamento(this, oEvent, 1);
+		},
 
 		// onVeiculoPatio: function () {
 		// 	utils.warningDialog("Apresentação de Tela Modal / Painel exibida em hierarquia ou em lista de Veículos em fila no pátio", "Exibição de Veículos em fila no Pátio");		
 		// },
 
-		// onViewListaCompartimentos: function () {
+		onConsultarChecklistCarregamento: function () {
 
-		// 	var oView = this.getView();
-		// 	var oModel = null;
+			var oView = this.getView();
+			var oModel = null;
 			
-		// 	oModel = oView.getModel();
+			oModel = oView.getModel();
 			
-		// 	if ((oModel === undefined) || (oModel === null)) {
-		// 		oModel = new JSONModel();
-		// 	}
+			if ((oModel === undefined) || (oModel === null)) {
+				oModel = new JSONModel();
+			}
 
-		// 	var oData = {
-		// 		Compartimentos: [{
-		// 			liberacao: 17,
-		// 			liberacaoConf: 18,
-		// 			tipoCana: 20,
-		// 			nomeFazenda: "Nova Esperança",
-		// 			proprietario: "Leonardo Cruz"
-		// 		}, {
-		// 			liberacao: 18,
-		// 			liberacaoConf: 19,
-		// 			tipoCana: 21,
-		// 			nomeFazenda: "Boa Vista",
-		// 			proprietario: "Pedro Lepre Cruz"
-		// 		}, {
-		// 			liberacao: 19,
-		// 			liberacaoConf: 20,
-		// 			tipoCana: 22,
-		// 			nomeFazenda: "Belo Monte",
-		// 			proprietario: "João Felipe Lepre Cruz"
-		// 		}, {
-		// 			liberacao: 20,
-		// 			liberacaoConf: 21,
-		// 			tipoCana: 23,
-		// 			nomeFazenda: "Santa Clara",
-		// 			proprietario: "Ana Paula Lepre"
-		// 		}, {
-		// 			liberacao: 21,
-		// 			liberacaoConf: 22,
-		// 			tipoCana: 24,
-		// 			nomeFazenda: "Passo Fundo",
-		// 			proprietario: "Aparecido Gonçalves da Cruz"
-		// 		}]
-		// 	};
+			var oData = {
+				Pendentes: [
+					{
+						idCarregamento: "00001234",
+						idTipoProduto: "1",
+						descTipoProduto: "AÇÚCAR",
+						dataChegada: "08/03/2021",
+						horaChegada: "08:10:10",
+						placaCavalo: "SP GVU0730",
+						transportadora: "Pinheiros Ltda ME",
+						clientes: "Petrom Mogi Das Cruzes SA",
+						quantidadeACarregar: "30,000",
+						status: "1 - Recepção",
+						materiais: "1000372"
+					}, 
+					{
+						idCarregamento: "00001235",
+						idTipoProduto: "2",
+						descTipoProduto: "ETANOL",
+						dataChegada: "08/03/2021",
+						horaChegada: "08:10:10",
+						placaCavalo: "SP GVU0730",
+						transportadora: "Pinheiros Ltda ME",
+						clientes: "Petrom Mogi Das Cruzes SA",
+						quantidadeACarregar: "400,000",
+						status: "1 - Recepção",
+						materiais: "1000373"
+					}, 
+					{
+						idCarregamento: "00001235",
+						idTipoProduto: "3",
+						descTipoProduto: "ÓLEO FUSEL",
+						dataChegada: "08/03/2021",
+						horaChegada: "08:10:10",
+						placaCavalo: "SP GVU0730",
+						transportadora: "Pinheiros Ltda ME",
+						clientes: "Petrom Mogi Das Cruzes SA",
+						quantidadeACarregar: "95,000",
+						status: "1 - Recepção",
+						materiais: "1000374"
+					}, 
+					{
+						idCarregamento: "00001236",
+						idTipoProduto: "4",
+						descTipoProduto: "BAGAÇO",
+						dataChegada: "08/03/2021",
+						horaChegada: "08:10:10",
+						placaCavalo: "SP GVU0730",
+						transportadora: "Pinheiros Ltda ME",
+						clientes: "Petrom Mogi Das Cruzes SA",
+						quantidadeACarregar: "62,000",
+						status: "1 - Recepção",
+						materiais: "1000375"
+					}, 
+					{
+						idCarregamento: "00001237",
+						idTipoProduto: "3",
+						descTipoProduto: "ÓLEO FUSEL",
+						dataChegada: "08/03/2021",
+						horaChegada: "08:10:10",
+						placaCavalo: "SP GVU0730",
+						transportadora: "Pinheiros Ltda ME",
+						clientes: "Petrom Mogi Das Cruzes SA",
+						quantidadeACarregar: "80,000",
+						status: "1 - Recepção",
+						materiais: "1000376"
+					}
+				]
+			};
 
-		// 	oModel.setData(oData);
-		// 	oView.setModel(oModel);
+			oModel.setData(oData);
+			oView.setModel(oModel);
 
-		// },
+		},
 
-		// onViewListaAnalises: function () {
+		onViewListaAnalises: function () {
 
-		// 	var oView = this.getView();
-		// 	var oModel = null;
+			var oView = this.getView();
+			var oModel = null;
 			
-		// 	oModel = oView.getModel();
+			oModel = oView.getModel();
 			
-		// 	if ((oModel === undefined) || (oModel === null)) {
-		// 		oModel = new JSONModel();
-		// 	}
+			if ((oModel === undefined) || (oModel === null)) {
+				oModel = new JSONModel();
+			}
 
-		// 	var oData = {
-		// 		Analises: [{
-		// 			veiculoCarreta: 24,
-		// 			carregadoraColhedora: 25,
-		// 			operador: 26,
-		// 			reboque: 27,
-		// 			noteiro: 28,
-		// 			balancaManual: 29,
-		// 			balancaAutomatica: 30,
-		// 			bituca: 31
-		// 		}, {
-		// 			veiculoCarreta: 32,
-		// 			carregadoraColhedora: 33,
-		// 			operador: 34,
-		// 			reboque: 35,
-		// 			noteiro: 36,
-		// 			balancaManual: 37,
-		// 			balancaAutomatica: 38,
-		// 			bituca: 39
-		// 		}, {
-		// 			veiculoCarreta: 40,
-		// 			carregadoraColhedora: 41,
-		// 			operador: 42,
-		// 			reboque: 43,
-		// 			noteiro: 44,
-		// 			balancaManual: 45,
-		// 			balancaAutomatica: 46,
-		// 			bituca: 47
-		// 		}, {
-		// 			veiculoCarreta: 48,
-		// 			carregadoraColhedora: 49,
-		// 			operador: 50,
-		// 			reboque: 51,
-		// 			noteiro: 52,
-		// 			balancaManual: 53,
-		// 			balancaAutomatica: 54,
-		// 			bituca: 55
-		// 		}, {
-		// 			veiculoCarreta: 56,
-		// 			carregadoraColhedora: 57,
-		// 			operador: 58,
-		// 			reboque: 59,
-		// 			noteiro: 60,
-		// 			balancaManual: 61,
-		// 			balancaAutomatica: 62,
-		// 			bituca: 63
-		// 		}]
-		// 	};
+			var oData = {
+				Analises: [{
+					veiculoCarreta: 24,
+					carregadoraColhedora: 25,
+					operador: 26,
+					reboque: 27,
+					noteiro: 28,
+					balancaManual: 29,
+					balancaAutomatica: 30,
+					bituca: 31
+				}, {
+					veiculoCarreta: 32,
+					carregadoraColhedora: 33,
+					operador: 34,
+					reboque: 35,
+					noteiro: 36,
+					balancaManual: 37,
+					balancaAutomatica: 38,
+					bituca: 39
+				}, {
+					veiculoCarreta: 40,
+					carregadoraColhedora: 41,
+					operador: 42,
+					reboque: 43,
+					noteiro: 44,
+					balancaManual: 45,
+					balancaAutomatica: 46,
+					bituca: 47
+				}, {
+					veiculoCarreta: 48,
+					carregadoraColhedora: 49,
+					operador: 50,
+					reboque: 51,
+					noteiro: 52,
+					balancaManual: 53,
+					balancaAutomatica: 54,
+					bituca: 55
+				}, {
+					veiculoCarreta: 56,
+					carregadoraColhedora: 57,
+					operador: 58,
+					reboque: 59,
+					noteiro: 60,
+					balancaManual: 61,
+					balancaAutomatica: 62,
+					bituca: 63
+				}]
+			};
 
-		// 	oModel.setData(oData);
-		// 	oView.setModel(oModel);
+			oModel.setData(oData);
+			oView.setModel(oModel);
 
-		// },
+		},
 		
-		// onViewListaPesagens: function() {
+		onViewListaPesagens: function() {
 			
-		// 	var oView = this.getView();
-		// 	var oModel = null;
+			var oView = this.getView();
+			var oModel = null;
 			
-		// 	oModel = oView.getModel();
+			oModel = oView.getModel();
 			
-		// 	if ((oModel === undefined) || (oModel === null)) {
-		// 		oModel = new JSONModel();
-		// 	}
+			if ((oModel === undefined) || (oModel === null)) {
+				oModel = new JSONModel();
+			}
 
-		// 	var oData = {
-		// 		Pesagens: [{
-		// 			pesoBruto: 100000.00,
-		// 			pesoTara: 1000.00,
-		// 			pesoLiquido: 90000.00,
-		// 			descarga: 85000.00
-		// 		}, {
-		// 			pesoBruto: 110000.00,
-		// 			pesoTara: 1080.00,
-		// 			pesoLiquido: 95000.00,
-		// 			descarga: 83000.00
-		// 		}, {
-		// 			pesoBruto: 106000.00,
-		// 			pesoTara: 9000.00,
-		// 			pesoLiquido: 85000.00,
-		// 			descarga: 79000.00
-		// 		}, {
-		// 			pesoBruto: 130000.00,
-		// 			pesoTara: 9900.00,
-		// 			pesoLiquido: 88000.00,
-		// 			descarga: 75000.00
-		// 		}, {
-		// 			pesoBruto: 109000.00,
-		// 			pesoTara: 8800.00,
-		// 			pesoLiquido: 75000.00,
-		// 			descarga: 65000.00
-		// 		}]
-		// 	};
+			var oData = {
+				Pesagens: [{
+					pesoBruto: 100000.00,
+					pesoTara: 1000.00,
+					pesoLiquido: 90000.00,
+					descarga: 85000.00
+				}, {
+					pesoBruto: 110000.00,
+					pesoTara: 1080.00,
+					pesoLiquido: 95000.00,
+					descarga: 83000.00
+				}, {
+					pesoBruto: 106000.00,
+					pesoTara: 9000.00,
+					pesoLiquido: 85000.00,
+					descarga: 79000.00
+				}, {
+					pesoBruto: 130000.00,
+					pesoTara: 9900.00,
+					pesoLiquido: 88000.00,
+					descarga: 75000.00
+				}, {
+					pesoBruto: 109000.00,
+					pesoTara: 8800.00,
+					pesoLiquido: 75000.00,
+					descarga: 65000.00
+				}]
+			};
 
-		// 	oModel.setData(oData);
-		// 	oView.setModel(oModel);
+			oModel.setData(oData);
+			oView.setModel(oModel);
 			
-		// },
+		},
 
 		// onConsultaPartidas: function() {
 
@@ -303,165 +343,165 @@ sap.ui.define([
 		// 	this._valueHelpDialogViagens.open();
 		// },
 		
-		// _resetCompartimento: function (oEvent) {
+		_resetCompartimento: function (oEvent) {
 
-		// 	var oView = this.getView();
-		// 	var oModel = null;
+			var oView = this.getView();
+			var oModel = null;
 			
-		// 	oModel = oView.getModel();
+			oModel = oView.getModel();
 			
-		// 	if ((oModel === undefined) || (oModel === null)) {
-		// 		oModel = new JSONModel();
-		// 	}
+			if ((oModel === undefined) || (oModel === null)) {
+				oModel = new JSONModel();
+			}
 			
-		// 	var Compartimentos = oModel !== undefined ? oModel.oData.Compartimentos : [];
+			var Compartimentos = oModel !== undefined ? oModel.oData.Compartimentos : [];
 
-		// 	var oData = {
-		// 		Compartimentos: Compartimentos,
-		// 		liberacao: this.getView().getModel().getProperty("liberacao", oEvent.getSource().getBindingContext()),
-		// 		liberacaoConf: this.getView().getModel().getProperty("liberacaoConf", oEvent.getSource().getBindingContext()),
-		// 		tipoCana: this.getView().getModel().getProperty("tipoCana", oEvent.getSource().getBindingContext()),
-		// 		nomeFazenda: this.getView().getModel().getProperty("nomeFazenda", oEvent.getSource().getBindingContext()),
-		// 		razaoFazenda: "",
-		// 		proprietario: this.getView().getModel().getProperty("proprietario", oEvent.getSource().getBindingContext())
-		// 	};
+			var oData = {
+				Compartimentos: Compartimentos,
+				liberacao: this.getView().getModel().getProperty("liberacao", oEvent.getSource().getBindingContext()),
+				liberacaoConf: this.getView().getModel().getProperty("liberacaoConf", oEvent.getSource().getBindingContext()),
+				tipoCana: this.getView().getModel().getProperty("tipoCana", oEvent.getSource().getBindingContext()),
+				nomeFazenda: this.getView().getModel().getProperty("nomeFazenda", oEvent.getSource().getBindingContext()),
+				razaoFazenda: "",
+				proprietario: this.getView().getModel().getProperty("proprietario", oEvent.getSource().getBindingContext())
+			};
 
-		// 	oModel.setData(oData);
-		// 	oView.setModel(oModel);
+			oModel.setData(oData);
+			oView.setModel(oModel);
 
-		// },
+		},
 
-		// onVerDetalheCompartimento: function(oEvent) {
+		onVerDetalheCompartimento: function(oEvent) {
 			
-		// 	this._resetCompartimento(oEvent);
-		// 	this._showDetalhesCompartimentoFragment();
+			this._resetCompartimento(oEvent);
+			this._showDetalhesCompartimentoFragment();
 			
-		// },
+		},
 
-		// _showDetalhesCompartimentoFragment: function() {
+		_showDetalhesCompartimentoFragment: function() {
 
-		// 	if (!this._DetalhesCompartimentoFragment) {
-		// 		this._DetalhesCompartimentoFragment = sap.ui.xmlfragment("DetalhesCompartimento",
-		// 			"sap.gestlog.plataforma.view.RecebimentoCarregamento.Compartimento.fragments.DetalhesCompartimento",
-		// 			this
-		// 		);
-		// 		this.getView().addDependent(this._DetalhesCompartimentoFragment);
-		// 	}
-		// 	this._DetalhesCompartimentoFragment.open();
-		// },
+			if (!this._DetalhesCompartimentoFragment) {
+				this._DetalhesCompartimentoFragment = sap.ui.xmlfragment("DetalhesCompartimento",
+					"sap.gestlog.plataforma.view.RecebimentoCarregamento.Compartimento.fragments.DetalhesCompartimento",
+					this
+				);
+				this.getView().addDependent(this._DetalhesCompartimentoFragment);
+			}
+			this._DetalhesCompartimentoFragment.open();
+		},
 
 		// onSaveDetalhesPartida: function() {
 		// 	this.onCloseDetalhesPartida();
 		// },
 
-		// onCloseDetalhesCompartimento: function() {
-		// 	this._activeScreen = "view";
-		// 	this._DetalhesCompartimentoFragment.close();
-		// },
+		onCloseDetalhesCompartimento: function() {
+			this._activeScreen = "view";
+			this._DetalhesCompartimentoFragment.close();
+		},
 		
-		// _resetAnalise: function (oEvent) {
+		_resetAnalise: function (oEvent) {
 
-		// 	var oView = this.getView();
-		// 	var oModel = null;
+			var oView = this.getView();
+			var oModel = null;
 			
-		// 	oModel = oView.getModel();
+			oModel = oView.getModel();
 			
-		// 	if ((oModel === undefined) || (oModel === null)) {
-		// 		oModel = new JSONModel();
-		// 	}
+			if ((oModel === undefined) || (oModel === null)) {
+				oModel = new JSONModel();
+			}
 			
-		// 	var Analises = oModel !== undefined ? oModel.oData.Analises : [];
+			var Analises = oModel !== undefined ? oModel.oData.Analises : [];
 
-		// 	var oData = {
-		// 		Analises: Analises,
-		// 		veiculoCarreta: this.getView().getModel().getProperty("veiculoCarreta", oEvent.getSource().getBindingContext()),
-		// 		carregadoraColhedora: this.getView().getModel().getProperty("carregadoraColhedora", oEvent.getSource().getBindingContext()),
-		// 		operador: this.getView().getModel().getProperty("operador", oEvent.getSource().getBindingContext()),
-		// 		reboque: this.getView().getModel().getProperty("reboque", oEvent.getSource().getBindingContext()),
-		// 		noteiro: this.getView().getModel().getProperty("noteiro", oEvent.getSource().getBindingContext()),
-		// 		balancaManual: this.getView().getModel().getProperty("balancaManual", oEvent.getSource().getBindingContext()),
-		// 		balancaAutomatica: this.getView().getModel().getProperty("balancaAutomatica", oEvent.getSource().getBindingContext()),
-		// 		bituca: this.getView().getModel().getProperty("bituca", oEvent.getSource().getBindingContext())
-		// 	};
+			var oData = {
+				Analises: Analises,
+				veiculoCarreta: this.getView().getModel().getProperty("veiculoCarreta", oEvent.getSource().getBindingContext()),
+				carregadoraColhedora: this.getView().getModel().getProperty("carregadoraColhedora", oEvent.getSource().getBindingContext()),
+				operador: this.getView().getModel().getProperty("operador", oEvent.getSource().getBindingContext()),
+				reboque: this.getView().getModel().getProperty("reboque", oEvent.getSource().getBindingContext()),
+				noteiro: this.getView().getModel().getProperty("noteiro", oEvent.getSource().getBindingContext()),
+				balancaManual: this.getView().getModel().getProperty("balancaManual", oEvent.getSource().getBindingContext()),
+				balancaAutomatica: this.getView().getModel().getProperty("balancaAutomatica", oEvent.getSource().getBindingContext()),
+				bituca: this.getView().getModel().getProperty("bituca", oEvent.getSource().getBindingContext())
+			};
 
-		// 	oModel.setData(oData);
-		// 	oView.setModel(oModel);
+			oModel.setData(oData);
+			oView.setModel(oModel);
 
-		// },
+		},
 
-		// onVerDetalheAnalise: function(oEvent) {
+		onVerDetalheAnalise: function(oEvent) {
 			
-		// 	this._resetAnalise(oEvent);
-		// 	this._showDetalhesAnaliseFragment();
+			this._resetAnalise(oEvent);
+			this._showDetalhesAnaliseFragment();
 			
-		// },
+		},
 
-		// _showDetalhesAnaliseFragment: function() {
+		_showDetalhesAnaliseFragment: function() {
 
-		// 	if (!this._DetalhesAnaliseFragment) {
-		// 		this._DetalhesAnaliseFragment = sap.ui.xmlfragment("DetalhesAnalise",
-		// 			"sap.gestlog.plataforma.view.RecebimentoCarregamento.Compartimento.fragments.DetalhesAnalise",
-		// 			this
-		// 		);
-		// 		this.getView().addDependent(this._DetalhesAnaliseFragment);
-		// 	}
-		// 	this._DetalhesAnaliseFragment.open();
-		// },
+			if (!this._DetalhesAnaliseFragment) {
+				this._DetalhesAnaliseFragment = sap.ui.xmlfragment("DetalhesAnalise",
+					"sap.gestlog.plataforma.view.RecebimentoCarregamento.Compartimento.fragments.DetalhesAnalise",
+					this
+				);
+				this.getView().addDependent(this._DetalhesAnaliseFragment);
+			}
+			this._DetalhesAnaliseFragment.open();
+		},
 
-		// onCloseDetalhesAnalise: function() {
-		// 	this._activeScreen = "view";
-		// 	this._DetalhesAnaliseFragment.close();
-		// },
+		onCloseDetalhesAnalise: function() {
+			this._activeScreen = "view";
+			this._DetalhesAnaliseFragment.close();
+		},
 		
-		// _resetPesagem: function (oEvent) {
+		_resetPesagem: function (oEvent) {
 
-		// 	var oView = this.getView();
-		// 	var oModel = null;
+			var oView = this.getView();
+			var oModel = null;
 			
-		// 	oModel = oView.getModel();
+			oModel = oView.getModel();
 			
-		// 	if ((oModel === undefined) || (oModel === null)) {
-		// 		oModel = new JSONModel();
-		// 	}
+			if ((oModel === undefined) || (oModel === null)) {
+				oModel = new JSONModel();
+			}
 			
-		// 	var Pesagens = oModel !== undefined ? oModel.oData.Pesagens : [];
+			var Pesagens = oModel !== undefined ? oModel.oData.Pesagens : [];
 
-		// 	var oData = {
-		// 		Pesagens: Pesagens,
-		// 		pesoBruto: this.getView().getModel().getProperty("pesoBruto", oEvent.getSource().getBindingContext()),
-		// 		pesoTara: this.getView().getModel().getProperty("pesoTara", oEvent.getSource().getBindingContext()),
-		// 		pesoLiquido: this.getView().getModel().getProperty("pesoLiquido", oEvent.getSource().getBindingContext()),
-		// 		descarga: this.getView().getModel().getProperty("descarga", oEvent.getSource().getBindingContext())
-		// 	};
+			var oData = {
+				Pesagens: Pesagens,
+				pesoBruto: this.getView().getModel().getProperty("pesoBruto", oEvent.getSource().getBindingContext()),
+				pesoTara: this.getView().getModel().getProperty("pesoTara", oEvent.getSource().getBindingContext()),
+				pesoLiquido: this.getView().getModel().getProperty("pesoLiquido", oEvent.getSource().getBindingContext()),
+				descarga: this.getView().getModel().getProperty("descarga", oEvent.getSource().getBindingContext())
+			};
 
-		// 	oModel.setData(oData);
-		// 	oView.setModel(oModel);
+			oModel.setData(oData);
+			oView.setModel(oModel);
 
-		// },
+		},
 
-		// onVerDetalhePesagem: function(oEvent) {
+		onVerDetalhePesagem: function(oEvent) {
 			
-		// 	this._resetPesagem(oEvent);
-		// 	this._showDetalhesPesagemFragment();
+			this._resetPesagem(oEvent);
+			this._showDetalhesPesagemFragment();
 			
-		// },
+		},
 
-		// _showDetalhesPesagemFragment: function() {
+		_showDetalhesPesagemFragment: function() {
 
-		// 	if (!this._DetalhesPesagemFragment) {
-		// 		this._DetalhesPesagemFragment = sap.ui.xmlfragment("DetalhesPesagem",
-		// 			"sap.gestlog.plataforma.view.RecebimentoCarregamento.Compartimento.fragments.DetalhesPesagem",
-		// 			this
-		// 		);
-		// 		this.getView().addDependent(this._DetalhesPesagemFragment);
-		// 	}
-		// 	this._DetalhesPesagemFragment.open();
-		// },
+			if (!this._DetalhesPesagemFragment) {
+				this._DetalhesPesagemFragment = sap.ui.xmlfragment("DetalhesPesagem",
+					"sap.gestlog.plataforma.view.RecebimentoCarregamento.Compartimento.fragments.DetalhesPesagem",
+					this
+				);
+				this.getView().addDependent(this._DetalhesPesagemFragment);
+			}
+			this._DetalhesPesagemFragment.open();
+		},
 
-		// onCloseDetalhesPesagem: function() {
-		// 	this._activeScreen = "view";
-		// 	this._DetalhesPesagemFragment.close();
-		// },
+		onCloseDetalhesPesagem: function() {
+			this._activeScreen = "view";
+			this._DetalhesPesagemFragment.close();
+		},
 		
 		onLerSmartCard: function() {
 			utils.warningDialog("Execução do processo de leitura e validação de Smart Card de Recepção", "Leitura de Smart Card");
@@ -1504,7 +1544,7 @@ sap.ui.define([
 		// }
 
 		// // FIM - Tratativas para DATA / HORA INICIO AVARIA EQUIPAMENTO NA NOTA
-	
+
 	});
 
 });

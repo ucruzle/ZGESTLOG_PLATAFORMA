@@ -1,4 +1,4 @@
-<mvc:View controllerName="sap.gestlog.plataforma.controller.Shared.Recebimento" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+<mvc:View controllerName="sap.gestlog.plataforma.controller.RecebimentoCarregamento" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
 	xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
 	
 	<Table id="itensVendas" delete="onDeleteOrdemDeVenda" width="auto" updateFinished="onListUpdateFinished" mode="Delete"

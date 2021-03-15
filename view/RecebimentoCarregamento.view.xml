@@ -1,36 +1,16 @@
 <mvc:View controllerName="sap.gestlog.plataforma.controller.RecebimentoCarregamento" xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<Page title="GestLog - Recebimento" showHeader="true" showNavButton="true" navButtonPress="onNavBack">
+	<Page title="ZGestLog - Recebimento" showHeader="true" showNavButton="true" navButtonPress="onNavBack">
 		<content>
-			<!--<FlexBox justifyContent="End" class="sapUiLargeMarginEnd">-->
-			<!--	<Button text="Salvar operação" press="onSaveOperacao" type="Emphasized"/>-->
-			<!--</FlexBox>-->
-			<mvc:XMLView viewName="sap.gestlog.plataforma.view.Shared.Recebimento.Cabecalho"/>
-			<mvc:XMLView viewName="sap.gestlog.plataforma.view.Shared.Recebimento.Transporte"/>
-			<mvc:XMLView viewName="sap.gestlog.plataforma.view.Shared.Recebimento.Veiculo"/>
-			<mvc:XMLView viewName="sap.gestlog.plataforma.view.Shared.Recebimento.Motorista"/>
-			<mvc:XMLView viewName="sap.gestlog.plataforma.view.Shared.Recebimento.ListaDocumentosDeVendas"/>
+			<mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.Cabecalho"/>
+			<mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.Transporte"/>
+			<mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.Veiculo"/>
+			<mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.Motorista"/>
+			<mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.ListaDocumentosDeVendas"/>
 		</content>
 		<footer>
 			<Toolbar>
-				<!-- <Button id="btnLerSmartCard" icon="sap-icon://credit-card" text="SM.CARD" press="onLerSmartCard" tooltip="Ler Smart Card">
-					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
-				</Button>
-				<Button id="btnLerSmartCardReturn" icon="sap-icon://cause" type="Transparent" press="onLerSmartCardReturn" tooltip="Renovar Leitura Smart Card" />
-				<Button id="btnObterPeso" icon="sap-icon://compare-2" text="Peso" press="onObterPeso" tooltip="Obter Peso">
-					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
-				</Button>
-				<Button id="btnObterPesoReturn" icon="sap-icon://cause" type="Transparent" press="onObterPesoReturn" tooltip="Renovar Obtenção de Peso" />
-				<Button type="Emphasized" id="btnGravar" icon="sap-icon://save" text="Gravar" press="onGravar" tooltip="Gravar dados do recebimento de cana">
-					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
-				</Button>
-				<Button id="btnCertificadoPesagem" icon="sap-icon://validate" text="Certificado" press="onCertificadoPesagem" tooltip="Certificado de Pesagem">
-					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
-				</Button> -->
 				<ToolbarSpacer/>
-				<!-- <Button id="btnMensagemPainel" icon="sap-icon://order-status" text="Painel" press="onMensagemPainel" tooltip="Mensagem Painel">
-					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
-				</Button> -->
 				<Button type="Emphasized" id="btnGravarRecebimento" icon="sap-icon://save" text="Gravar" press="onGravarRecebimento" tooltip="Gravar dados do recebimento do Carregamento">
 					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
 				</Button>

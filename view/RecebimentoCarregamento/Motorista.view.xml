@@ -1,4 +1,4 @@
-<mvc:View controllerName="sap.gestlog.plataforma.controller.Shared.Recebimento" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+<mvc:View controllerName="sap.gestlog.plataforma.controller.RecebimentoCarregamento" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" class="sapUiSizeCompact">
 	
 	<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"

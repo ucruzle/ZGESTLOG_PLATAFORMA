@@ -2,6 +2,116 @@ sap.ui.define([], function() {
 	"use strict";
 
 	return {
+
+		navegaEtapaCarregamento: function(oThis, oEvent, etapaCarregamento) {
+
+			var tiposProdutos = {
+				"ACUCAR": "1",
+				"ETANOL": "2",
+				"OLEOFUSEL": "3",
+				"BAGACO": "4"
+			};
+			
+			var etapasCarregamento = {
+				"CHECKLIST": 1,
+				"FATURAMENTO": 2
+			};
+
+			var oRouter       = null;
+			var sPath         = null;
+			var oPendente     = null;
+			var idTipoProduto = null;
+			var oContext      = null;
+			var that          = null;
+
+			that = oThis;
+			oRouter  = sap.ui.core.UIComponent.getRouterFor(that);
+			oContext = oEvent.getSource().getBindingContext();
+
+			if (oContext !== undefined) {
+
+				// Recuperar o link do click na lista
+				var sPath = oEvent.getSource().getBindingContext().getPath();
+
+				if (sPath !== undefined) {
+				
+					oPendente = that.getView().getModel().getProperty(sPath);
+
+					if (oPendente !== undefined) {
+
+						idTipoProduto = oPendente.idTipoProduto;
+
+						if (idTipoProduto !== undefined) {
+						
+							switch (idTipoProduto) {
+								case tiposProdutos.ACUCAR:
+
+									switch (etapaCarregamento) {
+										case etapasCarregamento.CHECKLIST:
+											oRouter.navTo("checklistacucar");		
+											break;
+										case etapasCarregamento.FATURAMENTO:
+											oRouter.navTo("faturamentodeacucar");
+											break;
+										default:
+											break;
+									}
+
+									break;
+								case tiposProdutos.ETANOL:
+
+									switch (etapaCarregamento) {
+										case etapasCarregamento.CHECKLIST:
+											oRouter.navTo("checklistetanol");
+											break;
+										case etapasCarregamento.FATURAMENTO:
+											oRouter.navTo("faturamentodeetanol");
+											break;
+										default:
+											break;
+									}
+
+									break;
+								case tiposProdutos.OLEOFUSEL:
+									
+									switch (etapaCarregamento) {
+										case etapasCarregamento.CHECKLIST:
+											oRouter.navTo("checklistoleofusel");
+											break;
+										case etapasCarregamento.FATURAMENTO:
+											oRouter.navTo("faturamentodeoleofusel");
+											break;
+										default:
+											break;
+									}
+
+									break;
+								case tiposProdutos.BAGACO:
+
+									switch (etapaCarregamento) {
+										case etapasCarregamento.CHECKLIST:
+											oRouter.navTo("checklistbagacocana");
+											break;
+										case etapasCarregamento.FATURAMENTO:
+											oRouter.navTo("faturamentodebagacocana");
+											break;
+										default:
+											break;
+									}
+								
+									break;
+								default:
+									break;
+							}
+						}
+					
+					}
+				
+				}
+			}
+
+		},
+
 		confirmDialog: function(message, onConfirm) {
 			jQuery.sap.require("sap.m.MessageBox");
 			sap.m.MessageBox.show(message, {
@@ -147,37 +257,3 @@ sap.ui.define([], function() {
 	};
 
 });
-
-//function confirmDialog() {
-//	alert("Ok");
-// jQuery.sap.require("sap.m.MessageBox");
-// sap.m.MessageBox.show("Confirma exclusão do apontamento?", {
-// 	icon: sap.m.MessageBox.Icon.QUESTION,
-// 	title: "Confirmar",
-// 	actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
-// 	onClose: function(oAction) {
-// 		if (oAction === sap.m.MessageBox.Action.YES) {
-// 			$.ajax({
-// 				url: sap.ui.getCore().getModel("appView").getProperty("/url") + "/Apontamentos(" + sap.ui.getCore().byId(
-// 					"apontamentoDetail--objectHeader").getNumber() + ")",
-// 				type: "DELETE",
-// 				jsonpCallback: 'getJSON',
-// 				contentType: "application/json",
-// 				dataType: 'json',
-// 				crossDomain: 'true',
-// 				success: function(data, textStatus, jqXHR) {
-// 					sap.m.MessageToast.show("Excluído com sucesso");
-// 					var oController = sap.ui.getCore().byId("apontamentoMaster").getController();
-// 					oController.onAfterRendering();
-// 					app.to("apontamentoMaster");
-
-// 				},
-// 				error: function(jqXHR, textStatus, errorThrown) {
-// 					sap.m.MessageToast.show("Erro ao tentar excluir registro: " + errorThrown);
-// 				}
-// 			});
-// 		}
-// 	}
-// });
-
-//}

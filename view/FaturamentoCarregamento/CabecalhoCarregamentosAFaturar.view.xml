@@ -1,0 +1,39 @@
+<mvc:View controllerName="sap.gestlog.plataforma.controller.FaturamentoCarregamento" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" class="sapUiSizeCompact">
+	
+	<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+		singleContainerFullSize="false" title="Faturamento">
+		
+		<f:content>
+			
+			<!-- 1º coluna - Início -->
+			
+			<core:Title text="" level="H6"/>
+			<Label text="Centro" required="false" tooltip="Centro" />
+			<Input id="idCentroConsultaAFaturar" type="Text" value="{ path: 'Ordem>/idCentroConsultaAFaturar' }"
+			  showValueHelp="true" valueHelpRequest="handleValueHelpCentroConsultaAFaturar" change="" valueState="">
+				<layoutData>
+					<l:GridData span="XL3 L3 M3 S12"/>
+				</layoutData>
+			</Input>
+			
+			<!-- 1º coluna - Fim -->
+			
+			<!--2º coluna - Início -->
+			
+			<core:Title text="" level="H6"/>
+			
+			<!--2º coluna - Fim -->
+			
+			<!--3º coluna - Início -->
+			
+			<core:Title text="" level="H6"/>
+			
+			<!--3º coluna - Fim -->
+			
+		</f:content>
+		
+	</f:SimpleForm>
+	
+</mvc:View>

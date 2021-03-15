@@ -1,7 +1,7 @@
 <mvc:View controllerName="sap.gestlog.plataforma.controller.Cockpit" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
 	xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" class="sapUiSizeCompact">
 	
-	<Page title="GestLog - Cockpit" showHeader="true" showNavButton="false">
+	<Page title="ZGestLog - Cockpit" showHeader="true" showNavButton="false">
 		<content>
 	
 			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Recebimento de Carregamento" subheader="Recepção"
@@ -12,7 +12,7 @@
 				</TileContent>
 			</GenericTile>
 			
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Carregamentos Pendentes" subheader="Fila"
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Carregamentos Pendentes" subheader="Checklist"
 				press="onChecklistCarregamento">
 				<TileContent footer="Inspeção por checklist, confirmação de inspeção (Aprovação ou Reprovação) e liberação para faturamento e expedição">
 					<ImageContent src="sap-icon://share"/>

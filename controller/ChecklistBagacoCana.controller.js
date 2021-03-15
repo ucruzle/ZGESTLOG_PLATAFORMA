@@ -3,11 +3,12 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"../utils",
 	"sap/ui/model/json/JSONModel",
+	"sap/ui/core/routing/History",
 	"sap/ui/core/UIComponent"
-], function(Controller, Filter, utils, JSONModel, UIComponent) {
+], function(Controller, Filter, utils, JSONModel, History, UIComponent) {
 	"use strict";
 
-	return Controller.extend("sap.gestlog.plataforma.controller.Cockpit", {
+	return Controller.extend("sap.gestlog.plataforma.controller.ChecklistBagacoCana", {
 
 		onInit: function() {
 			// call the init function of the parent
@@ -16,20 +17,19 @@ sap.ui.define([
 			// create the views based on the url/hash
 			// this.getRouter().initialize();
 		},
-		
-		onRecebimentoDeCarregamento: function() {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("recebimentocarregamento");
-		},
-		
-		onChecklistCarregamento: function() {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("checklistcarregamento");
-		},
-		
-		onFaturamentoExpedicao: function() {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("faturamentocarregamento");
+
+		onNavBack: function () {
+
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = UIComponent.getRouterFor(this);
+				oRouter.navTo("cockpit", {}, true);
+			}
+
 		},
 		
 		// onFidc: function() {
