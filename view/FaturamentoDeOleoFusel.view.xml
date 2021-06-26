@@ -1,21 +1,406 @@
-<mvc:View controllerName="sap.gestlog.plataforma.controller.FaturamentoDeOleoFusel" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+<mvc:View controllerName="sap.gestlog.plataforma.controller.FaturamentoDeOleoFusel" xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" 
+	xmlns:l="sap.ui.layout" class="sapUiSizeCompact">
+
 	<Page title="ZGestLog - Faturamento de Carregamento de Óleo Fusel" showHeader="true" showNavButton="true" navButtonPress="onNavBack">
 		<content>
-			<!--<FlexBox justifyContent="End" class="sapUiLargeMarginEnd">-->
-			<!--	<Button text="Salvar operação" press="onSaveOperacao" type="Emphasized"/>-->
-			<!--</FlexBox>-->
-			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.ChecklistCarregamento.CabecalhoCarregamentosPendentes"/> -->
-			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.Transporte"/> -->
-			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.RecebimentoCarregamento"/> -->
-			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.RecebimentoCarregamento.Motorista"/> -->
-			<!-- <mvc:XMLView viewName="sap.gestlog.plataforma.view.ChecklistCarregamento.ListaCarregamentosPendentes"/> -->
+			
+			<IconTabBar id="idIconTabBarMulti" class="sapUiResponsiveContentPadding">
+				<items>
+					
+					<IconTabFilter icon="sap-icon://add-document" text="Recepção">
+						
+						<Panel id="pnlRecebimento" width="auto" class="sapUiResponsiveMargin">
+							<headerToolbar>
+								<OverflowToolbar style="Clear">
+									<Title text="Recebimento" />
+									<ToolbarSpacer />
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								
+								<f:SimpleForm id="frmRecebimento" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+									adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+									singleContainerFullSize="false">
+									
+									<f:content>
+										
+										<!-- 1º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+										<Label text="Ord / Cen" required="false" tooltip="Ordem de Carregamento e Centro" />
+										<Input id="idCarregamento" type="Text" value="{ path: 'Ordem>/idCarregamento' }" enabled="false" tooltip="Ordem de Carregamento" />
+										<Input id="idCentro" type="Text" value="{ path: 'Ordem>/idCentro' }" enabled="false" tooltip="Centro" />
+										
+										<Label text="Transporte" required="true"/>
+										<ComboBox showSecondaryValues="true" items="{ path: 'ListasAuxiliares>/Z_LISTA_TRANSPORTESet' }" selectedKey="{ path: 'Ordem>/transporte' }"
+											change="handleTransporteChange">
+											<core:ListItem key="{ListasAuxiliares>Auart}" text="{ListasAuxiliares>Auart} - {ListasAuxiliares>Txt}"/>
+										</ComboBox>
+										
+										<Label text="Cliente" required="true"/>
+										<Input id="idCliente" type="Text" value="{ path: 'Ordem>/idCliente' }" showValueHelp="true" valueHelpRequest="handleValueHelpCliente" change="" valueState="" tooltip="Código do Cliente" />
+										
+										<!-- 1º coluna - Fim -->
+										
+										<!--2º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+										<Label text="Chegada" required="false" />
+										<DatePicker id="idDataChegada" displayFormat="short" value="{ path: '/dataChegada', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Data Chegada" change="" />
+										<TimePicker id="idHoraChegada" dateValue="{Ordem>/horaChegada}" tooltip="Hora Chegada" change="" />
+										
+										<Label text="Operação" required="true" />
+										<ComboBox showSecondaryValues="true" items="{ path: 'ListasAuxiliares>/Z_LISTA_TIPOS_OPERACAOSet' }" selectedKey="{ path: 'Ordem>/tipoOperacao' }"
+											change="handleTipoOperacaoChange">
+											<core:ListItem key="{ListasAuxiliares>Auart}" text="{ListasAuxiliares>Auart} - {ListasAuxiliares>Txt}"/>
+										</ComboBox>
+										
+										<Label text="Município" required="false"/>
+										<Input id="descMunicipio" type="Text" value="{ path: 'Ordem>/descMunicipio' }" showValueHelp="false" enabled="false" valueHelpRequest="handleValueHelpMunicipio" change="" valueState="" tooltip="Município" />
+										
+										<!--2º coluna - Fim -->
+										
+										<!--3º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+										<Label text="" required="false"/>
+										<Label text="Usu / Cart" required="false" tooltip="Usuário criador da ordem e Cartão de Viagem" />
+										<Input id="idUsuario" type="Text" value="{ path: 'Ordem>/idUsuario' }" showValueHelp="false" enabled="false" 
+											valueHelpRequest="handleValueHelpUsuario" change="" valueState="" tooltip="Usuário da criador da ordem" />
+										<Input id="idCartao" type="Text" value="{ path: 'Ordem>/idCartao' }" showValueHelp="false" enabled="false" valueHelpRequest="handleValueHelpCartao" 
+											change="" valueState="" tooltip="Cartão de viagem" />
+			
+										<Label text="Embal." required="true" tooltip="Tipo de Embalagem" />
+										<ComboBox showSecondaryValues="true" items="{ path: 'ListasAuxiliares>/Z_LISTA_EMBALAGENSSet' }" selectedKey="{ path: 'Ordem>/embalagens' }"
+											change="handleEmbalagemChange" tooltip="Tipo de Embalagem">
+											<core:ListItem key="{ListasAuxiliares>Auart}" text="{ListasAuxiliares>Auart} - {ListasAuxiliares>Txt}"/>
+										</ComboBox>
+			
+										<Label text="Anterior" required="true"/>
+										<Input id="CargaAnteriorDescricao" value="{ path: 'Ordem>/CargaAnteriorDescricao' }" tooltip="Carga Anterior" />
+										
+										<!--3º coluna - Fim -->
+										
+									</f:content>
+									
+								</f:SimpleForm>
+								
+							</content>
+						</Panel>
+			
+						<Panel id="pnlTransporte" width="auto" class="sapUiResponsiveMargin">
+							<headerToolbar>
+								<OverflowToolbar style="Clear">
+									<Title text="Transporte" />
+									<ToolbarSpacer />
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								
+								<f:SimpleForm id="frmTransporte" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+									adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+									singleContainerFullSize="false">
+									
+									<f:content>
+										
+										<!-- 1º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+										<Label text="Nº Trans" required="true" />
+										<Input id="idTransportadora" type="Text" value="{ path: 'Ordem>/idTransportadora' }" showValueHelp="true" 
+											valueHelpRequest="handleValueHelpidTransportadora" change="" valueState="" tooltip="Nº da Transportadora" />
+										<Input id="descTransportadora" value="{ path: 'Ordem>/descTransportadora' }" enabled="false" tooltip="{ path: 'Ordem>/descTransportadora' }" />
+			
+										<!-- 1º coluna - Fim -->
+			
+										<!--2º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+										<Label text="Município" required="false"/>
+										<Input id="descMunicipioTrasnportadora" type="Text" value="{ path: 'Ordem>/descMunicipioTrasnportadora' }" enabled="false" tooltip="Município da Transportadora" />
+										
+										<!--2º coluna - Fim -->
+			
+										<!--3º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+										<Label text="Quant" required="true"/>
+										<Input id="quantidadeTransportada" type="Number" value="{ path: 'Ordem>/quantidadeTransportada' }" tooltip="Quantidade Transportada em KG / LT" />
+										
+										<!--3º coluna - Fim -->
+										
+									</f:content>
+									
+								</f:SimpleForm>
+								
+							</content>
+						</Panel>
+			
+						<Panel id="pnlVeiculo" width="auto" class="sapUiResponsiveMargin">
+							<headerToolbar>
+								<OverflowToolbar style="Clear">
+									<Title text="Veículo" />
+									<ToolbarSpacer />
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+			
+								<f:SimpleForm id="frmVeiculo" editable="true" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="12" labelSpanS="12"
+									adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
+									singleContainerFullSize="false">
+									
+									<f:content>
+			
+										<!-- 1º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+			
+										<Label text="Cavalo" required="true" />
+										<Input id="placaCavalo" type="Text" value="{ path: 'Ordem>/placaCavalo' }" showValueHelp="true" valueHelpRequest="handleValueHelpPlacaCavalo" change="" valueState="" tooltip="Nº Placa Cavalo" />
+										<Input id="anoPlacaCavalo" value="{ path: 'Ordem>/anoPlacaCavalo' }" tooltip="Ano Placa Cavalo" />
+			
+										<Label text="Reboque 1" required="false" />
+										<Input id="placaReboqueUm" type="Text" value="{ path: 'Ordem>/placaReboqueUm' }" tooltip="Nº Placa Reboque nº 1" />
+										<Input id="anoPlacaReboqueUm" value="{ path: 'Ordem>/anoPlacaReboqueUm' }" tooltip="Ano Placa Reboque nº 1" />
+			
+										<Label text="Reboque 2" required="false" />
+										<Input id="placaReboqueDois" type="Text" value="{ path: 'Ordem>/placaReboqueDois' }" tooltip="Nº Placa Reboque nº 2" />
+										<Input id="anoPlacaReboqueDois" value="{ path: 'Ordem>/anoPlacaReboqueDois' }" tooltip="Ano Placa Reboque nº 2" />
+			
+										<Label text="Reboque 3" required="false" />
+										<Input id="placaReboqueTres" type="Text" value="{ path: 'Ordem>/placaReboqueTres' }" tooltip="Nº Placa Reboque nº 3" />
+										<Input id="anoPlacaReboqueTres" value="{ path: 'Ordem>/anoPlacaReboqueTres' }" tooltip="Ano Placa Reboque nº 3" />
+			
+										<Label text="Cap. Total" required="true"/>
+										<Input id="capacidadeTotal" type="Number" value="{ path: 'Ordem>/capacidadeTotal' }" tooltip="Capacidade Total" />
+			
+										<Label text="Município" required="false"/>
+										<Input id="descMunicipioCavalo" type="Text" value="{ path: 'Ordem>/descMunicipioCavalo' }" tooltip="Município do Cavalo" />			
+										<Input id="descEstadoCavalo" type="Text" value="{ path: 'Ordem>/descEstadoCavalo' }" tooltip="UF do Cavalo">
+											<layoutData>
+												<l:GridData span="XL2 L2 M2 S2"/>
+											</layoutData>
+										</Input>
+			
+										<Label text="Padrão" required="false" />
+										<ComboBox showSecondaryValues="true" items="{ path: 'ListasAuxiliares>/Z_LISTA_PADRAO_CARRETASet' }" selectedKey="{ path: 'Ordem>/padraoCarreta' }"
+											change="handlePadraoCarretaChange" tooltip="Padrão Carreta">
+											<core:ListItem key="{ListasAuxiliares>Auart}" text="{ListasAuxiliares>Auart} - {ListasAuxiliares>Txt}"/>
+										</ComboBox>
+										
+										<!-- 1º coluna - Fim -->
+			
+										<!--2º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+			
+										<Label text="Cavalo" />
+										<DatePicker id="civPlacaCavalo" displayFormat="short" value="{ path: '/civPlacaCavalo', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado CIV do Cavalo" change="" />
+										<DatePicker id="cippPlacaCavalo" displayFormat="short" value="{ path: '/cippPlacaCavalo', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado CIPP do Cavalo" change="" />
+										<DatePicker id="certTqPlacaCavalo" displayFormat="short" value="{ path: '/certTqPlacaCavalo', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado Cert. TQ. do Cavalo" change="" />
+			
+										<Label text="Reboque 1" />
+										<DatePicker id="civPlacaReboqueUm" displayFormat="short" value="{ path: '/civPlacaReboqueUm', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado CIV do Reboque nº 1" change="" />
+										<DatePicker id="cippPlacaReboqueUm" displayFormat="short" value="{ path: '/cippPlacaReboqueUm', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado CIPP do Reboque nº 1" change="" />
+										<DatePicker id="certTqPlacaReboqueUm" displayFormat="short" value="{ path: '/certTqPlacaReboqueUm', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado Cert. TQ. do Reboque nº 1" change="" />
+			
+										<Label text="Reboque 2" />
+										<DatePicker id="civPlacaReboqueDois" displayFormat="short" value="{ path: '/civPlacaReboqueDois', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado CIV do Reboque nº 2" change="" />
+										<DatePicker id="cippPlacaReboqueDois" displayFormat="short" value="{ path: '/cippPlacaReboqueDois', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado CIPP do Reboque nº 2" change="" />
+										<DatePicker id="certTqPlacaReboqueDois" displayFormat="short" value="{ path: '/certTqPlacaReboqueDois', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado Cert. TQ.  do Reboque nº 2" change="" />
+			
+										<Label text="Reboque 3" />
+										<DatePicker id="civPlacaReboqueTres" displayFormat="short" value="{ path: '/civPlacaReboqueTres', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado CIV  do Reboque nº 3" change="" />
+										<DatePicker id="cippPlacaReboqueTres" displayFormat="short" value="{ path: '/cippPlacaReboqueTres', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado CIPP  do Reboque nº 3" change="" />
+										<DatePicker id="certTqPlacaReboqueTres" displayFormat="short" value="{ path: '/certTqPlacaReboqueTres', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Certificado Cert. TQ.  do Reboque nº 3" change="" />
+			
+										<Label text="PBTC" required="false" />
+										<Input id="pbtc" type="Text" value="{ path: 'Ordem>/pbtc' }" enabled="false" tooltip="{ path: 'Ordem>/pbtc' }" />
+			
+										<Label text="Renavan" required="false"/>
+										<Input id="nroRenavan" type="Number" value="{ path: 'Ordem>/nroRenavan' }" tooltip="Nº Renavan" />
+			
+										<Label text="Marca" required="false"/>
+										<Input id="descMarca" type="Text" value="{ path: 'Ordem>/descMarca' }" tooltip="Descrição da Marca" />
+										
+										<!--2º coluna - Fim -->
+			
+									</f:content>
+									
+								</f:SimpleForm>
+								
+							</content>
+						</Panel>
+			
+						<Panel id="pnlMotorista" width="auto" class="sapUiResponsiveMargin">
+							<headerToolbar>
+								<OverflowToolbar style="Clear">
+									<Title text="Motorista" />
+									<ToolbarSpacer />
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								
+								<f:SimpleForm id="frmMotorista" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12"
+									adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+									singleContainerFullSize="false">
+									
+									<f:content>
+										
+										<!-- 1º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+										<Label text="CNH" required="true" />
+										<Input id="nroCnh" type="Text" value="{ path: 'Ordem>/nroCnh' }" showValueHelp="true" valueHelpRequest="handleValueHelpNroCnh" 
+											change="" valueState="" tooltip="Nº da CNH">
+											<layoutData>
+												<l:GridData span="XL6 L6 M7 S7"/>
+											</layoutData>
+										</Input>
+										
+										<ComboBox showSecondaryValues="true" items="{ path: 'ListasAuxiliares>/Z_LISTA_CATEGORIA_CNHSet' }" selectedKey="{ path: 'Ordem>/categoriaCnh' }"
+											change="handleCategoriaCnhChange" tooltip="Categoria da NCH">
+											<core:ListItem key="{ListasAuxiliares>Auart}" text="{ListasAuxiliares>Auart} - {ListasAuxiliares>Txt}"/>
+										</ComboBox>
+			
+										<Label text="Nome" required="false" />
+										<Input id="nomeMotorista" type="Text" value="{ path: 'Ordem>/nomeMotorista' }" tooltip="Nome do Motorista" />		
+			
+										<!-- 1º coluna - Fim -->
+			
+										<!--2º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>
+										<Label text="Validade" required="false"/>
+										<DatePicker id="dataValidadeCnh" displayFormat="short" value="{ path: '/dataValidadeCnh', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" tooltip="Data de Validade da CNH" change="" />
+			
+										<Label text="Celular" required="false" />
+										<Input id="nroCelular" type="Text" value="{ path: 'Ordem>/nroCelular' }" tooltip="Nº do Celular" />	
+										
+										<!--2º coluna - Fim -->
+			
+										<!--3º coluna - Início -->
+										
+										<core:Title text="" level="H6"/>			
+										<Label text="CPF" required="false" />
+										<Input id="nroCpf" type="Text" value="{ path: 'Ordem>/nroCpf' }" tooltip="Nº do CPF" />
+			
+										<Label text="RG" required="false" />
+										<Input id="nroRg" type="Text" value="{ path: 'Ordem>/nroRg' }" tooltip="Nº do RG" />
+										<Input id="orgEmissor" type="Text" value="{ path: 'Ordem>/orgEmissor' }" tooltip="Orgão Emissor">
+										<layoutData>
+												<l:GridData span="XL2 L2 M2 S2"/>
+											</layoutData>
+										</Input>
+										
+										<!--3º coluna - Fim -->
+										
+									</f:content>
+									
+								</f:SimpleForm>
+								
+							</content>
+						</Panel>
+			
+						<Panel id="pnlDocVendas" width="auto" class="sapUiResponsiveMargin">
+							<headerToolbar>
+								<OverflowToolbar style="Clear">
+									<Title text="Vendas" />
+									<ToolbarSpacer />
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								
+								<Table id="itensVendas" delete="onDeleteOrdemDeVenda" width="auto" updateFinished="onListUpdateFinished" mode="Delete"
+									noDataText="Nenhuma Ordem de Venda localizada" busyIndicatorDelay="{detailView>/lineItemTableDelay}" fixedLayout="false"
+									class="sapUiResponsiveMargin" items="{/Vendas}">
+									<headerToolbar>
+										<Toolbar>
+											<ToolbarSpacer/>
+											<Button icon="sap-icon://add" press="onAdicionarOrdemDeVenda"/>
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Ordem"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Item"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Qtd.Original"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Qtd.à Carregar"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="UM"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Tolerância"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Tolerância Limitada"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Saldo em Fila"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Saldo da Ordem"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="CODIF"/>
+										</Column>
+									</columns>
+									<items >
+										<ColumnListItem type="Navigation">
+											<cells>
+												<ObjectIdentifier text="{idOrdemVenda}"/>
+												<Text text="{itemOrdemVenda}"/>
+												<Text text="{quantidadeOriginal}"/>
+												<Text text="{quantidadeACarregar}"/>
+												<Text text="{unidadeMedida}"/>
+												<Text text="{tolerancia}"/>
+												<CheckBox selected="{ path : 'Ordem>toleranciaLimitada', type : 'sap.ui.model.type.Boolean' }" enabled="false" />
+												<ObjectNumber number="{ path: 'Ordem>saldoEmFila'}"/>
+												<ObjectNumber number="{ path: 'Ordem>saldoDaOrdem'}"/>
+												<Text text="{codif}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								
+							</content>
+						</Panel>
+														
+					</IconTabFilter>
+
+					<IconTabSeparator icon="sap-icon://open-command-field" />
+
+					<IconTabFilter icon="sap-icon://accept" text="Checklist">
+						
+						
+														
+					</IconTabFilter>
+
+					<IconTabSeparator icon="sap-icon://open-command-field" />
+					
+					<IconTabFilter icon="sap-icon://my-sales-order" text="Faturamento">
+						
+						
+						
+					</IconTabFilter>
+								
+				</items>
+			</IconTabBar>
+
 		</content>
 		<footer>
 			<Toolbar>
 				<ToolbarSpacer/>
-				<Button type="Emphasized" id="btnGravarFaturamentoOleoFusel" icon="sap-icon://save" text="Gravar" 
-					press="onGravarFaturamentoOleoFusel" tooltip="Gravar dados Faturamento de Carregamento de Óleo Fusel">
+				<Button type="Emphasized" id="btnGravarFaturamentoAcucar" icon="sap-icon://save" text="Gravar" 
+					press="onGravarFaturamentoAcucar" tooltip="Gravar dados Faturamento de Carregamento de Óleo Fusel">
 					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
 				</Button>
 			</Toolbar>

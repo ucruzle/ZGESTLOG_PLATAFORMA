@@ -8,7 +8,7 @@ sap.ui.define([
 ], function (Controller, Filter, utils, JSONModel, History, UIComponent) {
 	"use strict";
 
-	return Controller.extend("sap.gestlog.plataforma.controller.RecebimentoCarregamento", {
+	return Controller.extend("sap.gestlog.plataforma.controller.RecebimentoDeAcucar", {
 
 		onInit: function () {
 			this._mode = "";

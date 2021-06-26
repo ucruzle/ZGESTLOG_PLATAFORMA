@@ -1,0 +1,202 @@
+<mvc:View controllerName="sap.gestlog.plataforma.controller.ListaCarregamentoDeOleoFusel" 
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" 
+	xmlns:l="sap.ui.layout" class="sapUiSizeCompact">
+
+	<Page title="Carregamentos de Óleo Fusel" showHeader="true" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+											
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+						  adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4"
+						  singleContainerFullSize="false" title="Recepção, Checklist e Faturamento">
+			
+				<f:content>
+					
+					<!-- 1º coluna - Início -->
+
+					<core:Title text="" level="H6"/>
+
+					<Label text="Início" required="false"/>
+					<DatePicker id="dataHoraInicio" displayFormat="short" 
+						value="{ path: '/dataHoraInicio', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" 
+						tooltip="Data / Hora Início" change="" />
+
+					<Label text="Fim" required="false"/>
+					<DatePicker id="dataHoraFim" displayFormat="short" 
+						value="{ path: '/dataHoraFim', type: 'sap.ui.model.type.Date', formatOptions: {style: 'short', UTC: true}}" 
+						tooltip="Data / Hora Fim" change="" />
+					
+					<!-- 1º coluna - Fim -->
+
+					<!-- 2º coluna - Início -->
+
+					<core:Title text="" level="H6"/>
+
+					<Label text="Centro" required="false" tooltip="Centro" />
+					<Input id="idCentroConsultaChecklist" type="Text" value="{ path: 'Ordem>/idCentroConsultaChecklist' }"
+					showValueHelp="true" valueHelpRequest="handleValueHelpCentroConsultaChecklist" change="" valueState="">
+						<layoutData>
+							<l:GridData span="XL6 L6 M7 S7"/>
+						</layoutData>
+					</Input>
+					<FlexBox justifyContent="Center" alignItems="Center" class="sapUiTinyMarginTop">
+						<core:Icon class="sapUiSmallMarginEnd" tooltip="Atualizar Consulta" src="sap-icon://refresh" 
+					    	press="onAtualizarConsulta" decorative="false"/>						
+						<layoutData>
+							<l:GridData span="XL2 L2 M2 S2"/>
+						</layoutData>
+					</FlexBox>
+
+					<!-- 2º coluna - Fim -->
+					
+				</f:content>
+		
+			</f:SimpleForm>
+
+			<IconTabBar id="idIconTabBarMulti" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter icon="sap-icon://accept" text="Inspecionar">
+						
+						<Table id="itensAInspecionar" width="auto" itemPress="onEditChecklistPendente"
+							noDataText="Nenhum carregamento pendente localizado" busyIndicatorDelay="{detailView>/lineItemTableDelay}" fixedLayout="false"
+							class="sapUiResponsiveMargin" items="{/Pendentes}">
+							<!-- <headerToolbar> -->
+								<!-- <Toolbar> -->
+									<!-- <Title text="Checklist"/> -->
+									<!-- <ToolbarSpacer/> -->
+									<!-- <Button icon="sap-icon://search" press="onConsultaChecklist"/> -->
+								<!-- </Toolbar> -->
+							<!-- </headerToolbar> -->
+							<columns>
+								<Column>
+									<Text text="ID. Carr." tooltip="Nº Carregamento" />
+								</Column>
+								<Column>
+									<Text text="Tp. Prod." tooltip="Tipo de Produto" />
+								</Column>								
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Dt. Cheg." tooltip="Data Chegada"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Hr. Cheg." tooltip="Hora Chegada" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Pl. Cav." tooltip="Nº Placa do Cavalo" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Transp." tooltip="Nº Transportadora" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Clien." tooltip="Clientes" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Qtd. Carr." tooltip="Quantidade à Carregar" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Status" tooltip="Status" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Mat." tooltip="Materiais" />
+								</Column>
+							</columns>
+							<items >
+								<ColumnListItem type="Navigation" press="onEditChecklistPendente">
+									<cells>
+										<ObjectIdentifier text="{idCarregamento}"/>
+										<Text text="{idTipoProduto} - {descTipoProduto}" />
+										<Text text="{dataChegada}" />
+										<Text text="{horaChegada}" />
+										<Text text="{placaCavalo}"/>
+										<Text text="{transportadora}"/>
+										<Text text="{clientes}"/>
+										<Text text="{quantidadeACarregar}"/>
+										<Text text="{status}"/>
+										<Text text="{materiais}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						
+					</IconTabFilter>
+					
+					<IconTabSeparator icon="sap-icon://open-command-field" />
+
+					<IconTabFilter icon="sap-icon://my-sales-order" text="Faturar">
+						
+						<Table id="itensAFaturar" width="auto" itemPress="onEditCarregamentoAFaturar"
+							noDataText="Nenhum carregamento à faturar localizado" busyIndicatorDelay="{detailView>/lineItemTableDelay}" fixedLayout="false"
+							class="sapUiResponsiveMargin" items="{/Faturamentos}">
+							<!-- <headerToolbar> -->
+								<!-- <Toolbar> -->
+									<!-- <Title text="Faturamento"/> -->
+									<!-- <ToolbarSpacer/> -->
+									<!-- <Button icon="sap-icon://search" press="onConsultaAFaturar"/> -->
+								<!-- </Toolbar> -->
+							<!-- </headerToolbar> -->
+							<columns>
+								<Column>
+									<Text text="ID. Carr." tooltip="Nº Carregamento" />
+								</Column>
+								<Column>
+									<Text text="Tp. Prod." tooltip="Tipo de Produto" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Dt. Cheg." tooltip="Data Chegada"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Hr. Cheg." tooltip="Hora Chegada" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Pl. Cav." tooltip="Nº Placa do Cavalo" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Transp." tooltip="Nº Transportadora" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Clien." tooltip="Clientes" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Qtd. Carr." tooltip="Quantidade à Carregar" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Status" tooltip="Status" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Mat." tooltip="Materiais" />
+								</Column>
+							</columns>
+							<items >
+								<ColumnListItem type="Navigation" press="onEditCarregamentoAFaturar">
+									<cells>
+										<ObjectIdentifier text="{idCarregamento}"/>
+										<Text text="{idTipoProduto} - {descTipoProduto}" />
+										<Text text="{dataChegada}" />
+										<Text text="{horaChegada}" />
+										<Text text="{placaCavalo}"/>
+										<Text text="{transportadora}"/>
+										<Text text="{clientes}"/>
+										<Text text="{quantidadeACarregar}"/>
+										<Text text="{status}"/>
+										<Text text="{materiais}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+														
+					</IconTabFilter>
+								
+				</items>
+			</IconTabBar>
+
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button type="Emphasized" id="btnRecepcionarCarregamentoAcucar" icon="sap-icon://add-document" 
+						text="Recepção" press="onbtnRecepcionarCarregamentoAcucar" tooltip="Novo Carregamento de Óleo Fusel">
+					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
+				</Button>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

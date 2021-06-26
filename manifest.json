@@ -114,24 +114,17 @@
 		  	  ]
 			},
 			{
-			  "pattern": "recebimentocarregamento",
-			  "name": "recebimentocarregamento",
+			  "pattern": "listacarregamentodeacucar",
+			  "name": "listacarregamentodeacucar",
 			  "target": [
-			  	"recebimentocarregamento"
-		  	  ]
-			},
-			{
-			  "pattern": "checklistcarregamento",
-			  "name": "checklistcarregamento",
-			  "target": [
-			    "checklistcarregamento"
+				"listacarregamentodeacucar"
 			  ]
 			},
 			{
-			  "pattern": "faturamentocarregamento",
-			  "name": "faturamentocarregamento",
+			  "pattern": "recebimentodeacucar",
+			  "name": "recebimentodeacucar",
 			  "target": [
-				"faturamentocarregamento"
+				"recebimentodeacucar"
 			  ]
 			},
 			{
@@ -142,27 +135,6 @@
 			  ]
 			},
 			{
-			  "pattern": "checklistetanol",
-			  "name": "checklistetanol",
-			  "target": [
-			    "checklistetanol"
-			  ]
-			},
-			{
-			  "pattern": "checklistoleofusel",
-			  "name": "checklistoleofusel",
-			  "target": [
-			    "checklistoleofusel"
-			  ]
-		    },
-			{
-			  "pattern": "checklistbagacocana",
-			  "name": "checklistbagacocana",
-			  "target": [
-			    "checklistbagacocana"
-			  ]
-			},
-			{
 			  "pattern": "faturamentodeacucar",
 			  "name": "faturamentodeacucar",
 			  "target": [
@@ -170,24 +142,87 @@
 			  ]
 			},
 			{
+		      "pattern": "listacarregamentodeetanol",
+			  "name": "listacarregamentodeetanol",
+			  "target": [
+				"listacarregamentodeetanol"
+			  ]
+			},
+			{
+			  "pattern": "recebimentodeetanol",
+			  "name": "recebimentodeetanol",
+			  "target": [
+				"recebimentodeetanol"
+			  ]
+			},
+			{
+			  "pattern": "checklistetanol",
+			  "name": "checklistetanol",
+			  "target": [
+				"checklistetanol"
+			  ]
+			},
+			{
 			  "pattern": "faturamentodeetanol",
 			  "name": "faturamentodeetanol",
 			  "target": [
-			    "faturamentodeetanol"
+				"faturamentodeetanol"
+			  ]
+			},
+			{
+			  "pattern": "listacarregamentodeoleofusel",
+			  "name": "listacarregamentodeoleofusel",
+			  "target": [
+				"listacarregamentodeoleofusel"
+			  ]
+			},
+			{
+			  "pattern": "recebimentodeoleofusel",
+			  "name": "recebimentodeoleofusel",
+			  "target": [
+				"recebimentodeoleofusel"
+			  ]
+			},
+			{
+			  "pattern": "checklistoleofusel",
+			  "name": "checklistoleofusel",
+			  "target": [
+				"checklistoleofusel"
 			  ]
 			},
 			{
 			  "pattern": "faturamentodeoleofusel",
 			  "name": "faturamentodeoleofusel",
 			  "target": [
-			    "faturamentodeoleofusel"
+				"faturamentodeoleofusel"
+			  ]
+			},
+			{
+			  "pattern": "listacarregamentodebagacocana",
+			  "name": "listacarregamentodebagacocana",
+			  "target": [
+				"listacarregamentodebagacocana"
+			  ]
+			},
+			{
+			  "pattern": "recebimentodebagacocana",
+			  "name": "recebimentodebagacocana",
+			  "target": [
+				"recebimentodebagacocana"
+			  ]
+			},
+			{
+			  "pattern": "checklistbagacocana",
+			  "name": "checklistbagacocana",
+			  "target": [
+				"checklistbagacocana"
 			  ]
 			},
 			{
 			  "pattern": "faturamentodebagacocana",
 			  "name": "faturamentodebagacocana",
 			  "target": [
-			    "faturamentodebagacocana"
+				"faturamentodebagacocana"
 			  ]
 			}
 		  ],
@@ -197,60 +232,85 @@
 			  "viewName": "Cockpit",
 			  "controlAggregation": "pages"
 			},
-			"recebimentocarregamento": {
-			  "viewId": "recebimentocarregamento",
-			  "viewName": "RecebimentoCarregamento",
+			"listacarregamentodeacucar": {
+		      "viewId": "listacarregamentodeacucar",
+			  "viewName": "ListaCarregamentoDeAcucar",
 			  "controlAggregation": "pages"
 			},
-			"checklistcarregamento": {
-				"viewId": "checklistcarregamento",
-				"viewName": "ChecklistCarregamento",
-				"controlAggregation": "pages"
-			},
-			"faturamentocarregamento": {
-				"viewId": "faturamentocarregamento",
-				"viewName": "FaturamentoCarregamento",
-				"controlAggregation": "pages"
+			"recebimentodeacucar": {
+			  "viewId": "recebimentodeacucar",
+			  "viewName": "RecebimentoDeAcucar",
+			  "controlAggregation": "pages"
 			},
 			"checklistacucar": {
-				"viewId": "checklistacucar",
-				"viewName": "ChecklistAcucar",
-				"controlAggregation": "pages"
-			},
-			"checklistetanol": {
-				"viewId": "checklistetanol",
-				"viewName": "ChecklistEtanol",
-				"controlAggregation": "pages"
-			},
-			"checklistoleofusel": {
-				"viewId": "checklistoleofusel",
-				"viewName": "ChecklistOleoFusel",
-				"controlAggregation": "pages"
-			},
-			"checklistbagacocana": {
-				"viewId": "checklistbagacocana",
-				"viewName": "ChecklistBagacoCana",
-				"controlAggregation": "pages"
+			  "viewId": "checklistacucar",
+			  "viewName": "ChecklistAcucar",
+			  "controlAggregation": "pages"
 			},
 			"faturamentodeacucar": {
-				"viewId": "faturamentodeacucar",
-				"viewName": "FaturamentoDeAcucar",
-				"controlAggregation": "pages"
+			  "viewId": "faturamentodeacucar",
+			  "viewName": "FaturamentoDeAcucar",
+			  "controlAggregation": "pages"
+			},
+			"listacarregamentodeetanol": {
+			  "viewId": "listacarregamentodeetanol",
+			  "viewName": "ListaCarregamentoDeEtanol",
+			  "controlAggregation": "pages"
+			},
+			"recebimentodeetanol": {
+			  "viewId": "recebimentodeetanol",
+			  "viewName": "RecebimentoDeEtanol",
+			  "controlAggregation": "pages"
+			},
+			"checklistetanol": {
+			  "viewId": "checklistetanol",
+			  "viewName": "ChecklistEtanol",
+			  "controlAggregation": "pages"
 			},
 			"faturamentodeetanol": {
-				"viewId": "faturamentodeetanol",
-				"viewName": "FaturamentoDeEtanol",
-				"controlAggregation": "pages"
+			  "viewId": "faturamentodeetanol",
+			  "viewName": "FaturamentoDeEtanol",
+			  "controlAggregation": "pages"
+			},
+			"listacarregamentodeoleofusel": {
+			  "viewId": "listacarregamentodeoleofusel",
+			  "viewName": "ListaCarregamentoDeOleoFusel",
+			  "controlAggregation": "pages"
+			},
+			"recebimentodeoleofusel": {
+			  "viewId": "recebimentodeoleofusel",
+			  "viewName": "RecebimentoDeOleoFusel",
+			  "controlAggregation": "pages"
+			},
+			"checklistoleofusel": {
+			  "viewId": "checklistoleofusel",
+			  "viewName": "ChecklistOleoFusel",
+			  "controlAggregation": "pages"
 			},
 			"faturamentodeoleofusel": {
-				"viewId": "faturamentodeoleofusel",
-				"viewName": "FaturamentoDeOleoFusel",
-				"controlAggregation": "pages"
+			  "viewId": "faturamentodeoleofusel",
+			  "viewName": "FaturamentoDeOleoFusel",
+			  "controlAggregation": "pages"
+			},
+			"listacarregamentodebagacocana": {
+			  "viewId": "listacarregamentodebagacocana",
+			  "viewName": "ListaCarregamentoDeBagacoCana",
+			  "controlAggregation": "pages"
+			},
+			"recebimentodebagacocana": {
+			  "viewId": "recebimentodebagacocana",
+			  "viewName": "RecebimentoDeBagacoCana",
+			  "controlAggregation": "pages"
+			},
+			"checklistbagacocana": {
+			  "viewId": "checklistbagacocana",
+			  "viewName": "ChecklistBagacoCana",
+			  "controlAggregation": "pages"
 			},
 			"faturamentodebagacocana": {
-				"viewId": "faturamentodebagacocana",
-				"viewName": "FaturamentoDeBagacoCana",
-				"controlAggregation": "pages"
+			  "viewId": "faturamentodebagacocana",
+			  "viewName": "FaturamentoDeBagacoCana",
+			  "controlAggregation": "pages"
 			}
 		  }
 		},

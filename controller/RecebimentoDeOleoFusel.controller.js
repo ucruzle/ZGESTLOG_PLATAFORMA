@@ -8,7 +8,7 @@ sap.ui.define([
 ], function (Controller, Filter, utils, JSONModel, History, UIComponent) {
 	"use strict";
 
-	return Controller.extend("sap.gestlog.plataforma.controller.ChecklistCarregamento", {
+	return Controller.extend("sap.gestlog.plataforma.controller.RecebimentoDeOleoFusel", {
 
 		onInit: function () {
 			this._mode = "";
@@ -29,15 +29,11 @@ sap.ui.define([
 
 		},
 
-		onEditChecklistPendente: function(oEvent) {
-			utils.navegaEtapaCarregamento(this, oEvent, 1);
-		},
-
 		// onVeiculoPatio: function () {
 		// 	utils.warningDialog("Apresentação de Tela Modal / Painel exibida em hierarquia ou em lista de Veículos em fila no pátio", "Exibição de Veículos em fila no Pátio");		
 		// },
 
-		onConsultarChecklistCarregamento: function () {
+		onViewListaCompartimentos: function () {
 
 			var oView = this.getView();
 			var oModel = null;
@@ -49,73 +45,37 @@ sap.ui.define([
 			}
 
 			var oData = {
-				Pendentes: [
-					{
-						idCarregamento: "00001234",
-						idTipoProduto: "1",
-						descTipoProduto: "AÇÚCAR",
-						dataChegada: "08/03/2021",
-						horaChegada: "08:10:10",
-						placaCavalo: "SP GVU0730",
-						transportadora: "Pinheiros Ltda ME",
-						clientes: "Petrom Mogi Das Cruzes SA",
-						quantidadeACarregar: "30,000",
-						status: "1 - Recepção",
-						materiais: "1000372"
-					}, 
-					{
-						idCarregamento: "00001235",
-						idTipoProduto: "2",
-						descTipoProduto: "ETANOL",
-						dataChegada: "08/03/2021",
-						horaChegada: "08:10:10",
-						placaCavalo: "SP GVU0730",
-						transportadora: "Pinheiros Ltda ME",
-						clientes: "Petrom Mogi Das Cruzes SA",
-						quantidadeACarregar: "400,000",
-						status: "1 - Recepção",
-						materiais: "1000373"
-					}, 
-					{
-						idCarregamento: "00001235",
-						idTipoProduto: "3",
-						descTipoProduto: "ÓLEO FUSEL",
-						dataChegada: "08/03/2021",
-						horaChegada: "08:10:10",
-						placaCavalo: "SP GVU0730",
-						transportadora: "Pinheiros Ltda ME",
-						clientes: "Petrom Mogi Das Cruzes SA",
-						quantidadeACarregar: "95,000",
-						status: "1 - Recepção",
-						materiais: "1000374"
-					}, 
-					{
-						idCarregamento: "00001236",
-						idTipoProduto: "4",
-						descTipoProduto: "BAGAÇO",
-						dataChegada: "08/03/2021",
-						horaChegada: "08:10:10",
-						placaCavalo: "SP GVU0730",
-						transportadora: "Pinheiros Ltda ME",
-						clientes: "Petrom Mogi Das Cruzes SA",
-						quantidadeACarregar: "62,000",
-						status: "1 - Recepção",
-						materiais: "1000375"
-					}, 
-					{
-						idCarregamento: "00001237",
-						idTipoProduto: "3",
-						descTipoProduto: "ÓLEO FUSEL",
-						dataChegada: "08/03/2021",
-						horaChegada: "08:10:10",
-						placaCavalo: "SP GVU0730",
-						transportadora: "Pinheiros Ltda ME",
-						clientes: "Petrom Mogi Das Cruzes SA",
-						quantidadeACarregar: "80,000",
-						status: "1 - Recepção",
-						materiais: "1000376"
-					}
-				]
+				Compartimentos: [{
+					liberacao: 17,
+					liberacaoConf: 18,
+					tipoCana: 20,
+					nomeFazenda: "Nova Esperança",
+					proprietario: "Leonardo Cruz"
+				}, {
+					liberacao: 18,
+					liberacaoConf: 19,
+					tipoCana: 21,
+					nomeFazenda: "Boa Vista",
+					proprietario: "Pedro Lepre Cruz"
+				}, {
+					liberacao: 19,
+					liberacaoConf: 20,
+					tipoCana: 22,
+					nomeFazenda: "Belo Monte",
+					proprietario: "João Felipe Lepre Cruz"
+				}, {
+					liberacao: 20,
+					liberacaoConf: 21,
+					tipoCana: 23,
+					nomeFazenda: "Santa Clara",
+					proprietario: "Ana Paula Lepre"
+				}, {
+					liberacao: 21,
+					liberacaoConf: 22,
+					tipoCana: 24,
+					nomeFazenda: "Passo Fundo",
+					proprietario: "Aparecido Gonçalves da Cruz"
+				}]
 			};
 
 			oModel.setData(oData);

@@ -4,34 +4,35 @@
 	<Page title="ZGestLog - Cockpit" showHeader="true" showNavButton="false">
 		<content>
 	
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Recebimento de Carregamento" subheader="Recepção"
-				press="onRecebimentoDeCarregamento">
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Carregamento de Açúcar" subheader=""
+				press="onCarregamentoDeAcucar">
 				<TileContent
-					footer="Cadastrar e atualizar, informações para liberação de carregamento por controle de triagem, análise de labortório e captura de pesagem.">
-					<ImageContent src="sap-icon://create-form"/>
+					footer="Cadastrar e atualizar, informações para carregamento de açúcar, inspeção por checklist, liberação para expedição e faturamento">
+					<ImageContent src="sap-icon://overview-chart"/>
 				</TileContent>
 			</GenericTile>
 			
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Carregamentos Pendentes" subheader="Checklist"
-				press="onChecklistCarregamento">
-				<TileContent footer="Inspeção por checklist, confirmação de inspeção (Aprovação ou Reprovação) e liberação para faturamento e expedição">
-					<ImageContent src="sap-icon://share"/>
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Carregamentos de Etanol" subheader=""
+				press="onCarregamentoDeEtanol">
+				<TileContent footer="Cadastrar e atualizar, informações para carregamento de etanol, inspeção por checklist, liberação para expedição e faturamento">
+					<ImageContent src="sap-icon://mileage"/>
 				</TileContent>
 			</GenericTile>
 			
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Faturamento / Expedição" subheader="Fatura" 
-				press="onFaturamentoExpedicao">
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Carregamentos de Óleo Fusel" subheader="" 
+				press="onCarregamentoDeOleoFusel">
 				<TileContent
-					footer="Captura de pesos (bruto e líquido), rastreabilidade pela entrada de lacres e lote de controle, geração de DANFE e cáculo de frete">
-					<ImageContent src="sap-icon://shipping-status"/>
+					footer="Cadastrar e atualizar, informações para carregamento de óleo fusel, inspeção por checklist, liberação para expedição e faturamento">
+					<ImageContent src="sap-icon://blur"/>
 				</TileContent>
 			</GenericTile>
 			
-			<!--<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Operações FIDC" subheader="FIDC" press="onFidc">-->
-			<!--	<TileContent footer="Operações FIDC">-->
-			<!--		<ImageContent src="sap-icon://waiver"/>-->
-			<!--	</TileContent>-->
-			<!--</GenericTile>-->
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Carregamentos de Bagaço de Cana" subheader="" 
+				press="onCarregamentoDeBagacoDeCana">
+				<TileContent footer="Cadastrar e atualizar, informações para carregamento de bagaço de cana, inspeção por checklist, liberação para expedição e faturamento">
+					<ImageContent src="sap-icon://e-care"/>
+				</TileContent>
+			</GenericTile>
 			
 			<!--<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Boleto" subheader="Impressão" press="onBoleto">-->
 			<!--	<TileContent footer="Impressão de boleto inteligente, ou integração SAP">-->

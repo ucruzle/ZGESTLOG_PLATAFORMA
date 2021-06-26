@@ -17,25 +17,25 @@ sap.ui.define([
 			// this.getRouter().initialize();
 		},
 		
-		onRecebimentoDeCarregamento: function() {
+		onCarregamentoDeAcucar: function() {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("recebimentocarregamento");
+			oRouter.navTo("listacarregamentodeacucar");
 		},
 		
-		onChecklistCarregamento: function() {
+		onCarregamentoDeEtanol: function() {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("checklistcarregamento");
+			oRouter.navTo("listacarregamentodeetanol");
 		},
 		
-		onFaturamentoExpedicao: function() {
+		onCarregamentoDeOleoFusel: function() {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("faturamentocarregamento");
+			oRouter.navTo("listacarregamentodeoleofusel");
 		},
 		
-		// onFidc: function() {
-		// 	var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-		// 	oRouter.navTo("operacoesfidc");
-		// },
+		onCarregamentoDeBagacoDeCana: function() {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("listacarregamentodebagacocana");
+		}
 		
 		// onBoleto: function() {
 		// 	var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
